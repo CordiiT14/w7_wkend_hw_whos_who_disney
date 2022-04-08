@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Randomizer from '../component/Randomizer';
+import DisneyCharacter from '../component/DisneyCharacter';
 
 const WhosWhoContainer = () => {
     const [character, setCharacter] = useState("");
@@ -24,6 +25,7 @@ const WhosWhoContainer = () => {
         <div>
             <h1>Who's Who - Disney</h1>
             <Randomizer getCharacter={getCharacter} />
+            <DisneyCharacter character={character}/>
         </div>
     );
 };
