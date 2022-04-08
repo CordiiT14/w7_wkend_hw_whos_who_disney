@@ -1,23 +1,36 @@
 import React, {useState, useEffect} from 'react';
+import Randomizer from '../component/Randomizer';
 
 const WhosWhoContainer = () => {
-    const [character, setCharacters] = useState("");
+    const [character, setCharacter] = useState("");
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     getCharacter();
+    // }, []);
+
+    const getCharacter = () => {
         const id = randomIdGenerator()
-        getCharacterData(id);
-    }, []);
-
-    const getCharacterData = (id) => {
-        
         fetch(`https://api.disneyapi.dev/characters/${id}`)
         .then(data => data.json())
-        .then(result => setCharacters(result))
+        .then(result => setCharacter(result))
     };
 
     const randomIdGenerator = () => {
         return (Math.floor(Math.random()* 7439))
     }
+
+
+    return(
+        <div>
+            <h1>Who's Who - Disney</h1>
+            <Randomizer getCharacter={getCharacter} />
+        </div>
+    );
+};
+
+export default WhosWhoContainer;
+
+
 
     // async function getCharacterData() {
     //     const allData = [];
@@ -34,12 +47,3 @@ const WhosWhoContainer = () => {
     //     return setAllCharacters(allData);
     // }
 
-
-    return(
-        <div>
-            <h1>Who's Who - Disney</h1>
-        </div>
-    );
-};
-
-export default WhosWhoContainer;
