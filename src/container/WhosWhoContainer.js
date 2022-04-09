@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react';
 import Randomizer from '../component/Randomizer';
 import DisneyCharacter from '../component/DisneyCharacter';
 import Details from '../component/Details';
+import Favourites from '../component/Favourites';
 
 const WhosWhoContainer = () => {
     const [character, setCharacter] = useState("");
     const [characterInfo, setCharacterInfo] = useState(false)
+    const [favourites, setFavourites] = useState([]);
 
     // useEffect(() => {
     //     getCharacter();
@@ -27,12 +29,20 @@ const WhosWhoContainer = () => {
         setCharacterInfo(true)
     }
 
+    const addFavourites = (character) => {
+        const updateFavs = favourites;
+        updateFavs.push(character);
+        setFavourites(updateFavs);
+
+    }
+
     return(
         <div>
             <h1>Who's Who - Disney</h1>
             <Randomizer getCharacter={getCharacter} />
-            <DisneyCharacter character={character} moreInformation={moreInformation}/>
+            <DisneyCharacter character={character} moreInformation={moreInformation} addFavourites={addFavourites}/>
             {characterInfo ? <Details character={character}/> : null}
+            <Favourites favourites={favourites}/>
         </div>
     );
 };
