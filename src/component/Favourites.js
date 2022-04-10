@@ -14,8 +14,10 @@ const Favourites = ({favourites}) => {
 
     const searchFavs = () => {
         favourites.filter( (fav) => {
-            if (fav.name.toLowerCase().includes(search.toLowerCase())){
-                return (<DisneyCharacter/>)
+            if (search == "") {
+                return {favNodes}
+            } else if (fav.name.toLowerCase().includes(search.toLowerCase())){
+                return (<li>{fav.name}</li>)
             }
             else {
                 return {favNodes}
@@ -32,8 +34,9 @@ const Favourites = ({favourites}) => {
             <input type="text" onChange={event => setSearch(event.target.value)}></input>
             <ul>
                 {favNodes}
+                {searchFavs}
             </ul> 
-            {searchFavs}
+            
             
         </div>
     )

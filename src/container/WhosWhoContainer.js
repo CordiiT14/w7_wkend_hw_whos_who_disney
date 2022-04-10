@@ -32,7 +32,7 @@ const WhosWhoContainer = () => {
     const addFavourites = (character) => {
         const updateFavs = favourites;
         updateFavs.push(character);
-        setFavourites(updateFavs);
+        setFavourites([...updateFavs]);
 
     }
 
